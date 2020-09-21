@@ -1,0 +1,1 @@
+./artisan make:crud School,Session,Section,ClassRoom,Departement,Subject,People,Teacher,Student,TeacherMutation,StudentSession,ClassRoutine,ClassRoutineDiscussion,ClassRoutineDiscussionChat,ClassRoutinePresent

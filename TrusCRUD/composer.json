@@ -1,0 +1,26 @@
+{
+    "name": "daniwebdev/truscrud",
+    "version": "1.8.0",
+    "description": "Laravel CRUD Builder",
+    "type": "library",
+    "require": {
+        "firebase/php-jwt": "^5.2",
+        "laravel/socialite": "^5.0",
+        "laravel/framework": "^7.0|^8.0"
+    },
+    "authors": [{
+        "name": "Muhamad Yusup Hamdani",
+        "email": "me@dani.work"
+    }],
+    "autoload": {
+        "psr-4": {
+            "TrusCRUD\\": "src"
+        },
+        "files": [
+            "src/Helpers/global.php"
+        ],
+        "classmap": [
+            "database/seeds"
+        ]
+    }
+}

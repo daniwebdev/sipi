@@ -1,0 +1,95 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Author: Chidume Nnamdi <kurtwanger40@gmail.com>
+ */
+class Command extends SymfonyCommand
+{
+    
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+}
+
+class Check extends Command
+{
+    
+    public function configure()
+    {
+        $this -> setName('check')
+            -> setDescription('Check System Required.');
+            // -> setHelp('This command allows you to greet a user based on the time of the day...')
+            // -> addArgument('username', InputArgument::REQUIRED, 'The username of the user.');
+    }
+
+    public function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output -> writeln([
+            "",
+            '====**** Check System Requirement ****====',
+            "",
+        ]);
+
+        $modules = [
+            "dom",
+            "json",
+            "zip",
+            "pdo",
+            "curl",
+            "openssl",
+            "mbstring",
+            "mcrypt",
+        ];
+
+        $count = 0;
+
+        foreach($modules as $m) {
+            if(extension_loaded($m)) {
+                $count += 1;
+            }
+
+            $output -> writeLn([
+                "php-$m => ".(extension_loaded($m) ? "<info>Installed</info>":"<error>Not Installed</error>")
+            ]);
+        }
+
+        if($count == count($modules)) {
+            $output -> writeln([
+                "",
+                "---------------------------",
+                "Look Like Good!!",
+                "---------------------------"
+            ]);
+        } else {
+            $output -> writeln([
+                "",
+                "---------------------------",
+                "<error>:(</error>",
+                "---------------------------"
+            ]);
+        }
+
+        $output -> writeln([
+            "",
+            "=====================================",
+        ]);
+
+        return 1;
+    }
+}
+$app = new Application('TrusCLI', '1.0.0');
+$app -> add(new Check());
+$app -> run();

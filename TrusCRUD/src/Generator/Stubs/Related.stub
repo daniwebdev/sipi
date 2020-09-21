@@ -1,0 +1,4 @@
+    //Related to {{class_name}}
+    function {{lower_name}}() {
+        return $this->{{type}}(\App\Models\{{class_name}}::class, '{{fk}}');
+    }
