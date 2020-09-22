@@ -20,16 +20,34 @@ class UsersSeeder extends Seeder
             'name'              => 'Muhamad Yusup Hamdani',
             'phone'             => '085717453300',
             'access_role_id'    => 1,
+            'email'             => 'super@mail.com',
+            'password'          => bcrypt('password'),
+        ]);
+
+        User::create([
+            'uuid'              => Str::uuid(),
+            'name'              => 'Admin SIPI',
+            'phone'             => '0857123123123',
+            'access_role_id'    => 2,
             'email'             => 'admin@mail.com',
             'password'          => bcrypt('password'),
         ]);
 
         User::create([
             'uuid'              => Str::uuid(),
-            'name'              => 'Public User',
-            'phone'             => '0857123123123',
-            'access_role_id'    => 2,
-            'email'             => 'user@mail.com',
+            'name'              => 'Finance',
+            'phone'             => '0857123123000',
+            'access_role_id'    => 3,
+            'email'             => 'finance@mail.com',
+            'password'          => bcrypt('password'),
+        ]);
+
+        User::create([
+            'uuid'              => Str::uuid(),
+            'name'              => 'Collection',
+            'phone'             => '0857123123000',
+            'access_role_id'    => 4,
+            'email'             => 'collection@mail.com',
             'password'          => bcrypt('password'),
         ]);
 

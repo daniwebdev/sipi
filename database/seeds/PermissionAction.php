@@ -35,56 +35,76 @@ class PermissionAction extends Seeder
             ],
             [ //2
                 "uuid"          => Str::uuid(),
-                "title"         => "Article",
+                "title"         => "Purchase",
                 "description"   => "",
-                "route_name"    => "",
-                "url"           => "#",
-                "icon"          => "fa fa-newspaper",
-                "actions"       => '["show","index"]',
+                "route_name"    => "purchase.index",
+                "url"           => "/purchase",
+                "icon"          => "fa fa-box-open",
+                "actions"       => '["show","index", "create", "edit", "destroy"]',
                 "order"         => 2,
             ],
             [ //3
                 "uuid"          => Str::uuid(),
-                "title"         => "All Article",
-                "parent_id"     => 2,
+                "title"         => "Invoice",
                 "description"   => "",
-                "route_name"    => "article.index",
-                "url"           => "/article",
-                "icon"          => "fas fa-arrow-circle-right",
-                "actions"       => '["show","index", "destroy","edit"]',
-                "order"         => 2,
-            ],
-            [ //4
-                "uuid"          => Str::uuid(),
-                "title"         => "Category",
-                "parent_id"     => 2,
-                "description"   => "",
-                "route_name"    => "article_categories.index",
-                "url"           => "/article_categories",
-                "icon"          => "fas fa-arrow-circle-right",
-                "actions"       => '["show","index", "destroy","edit"]',
-                "order"         => 2,
-            ],
-            [ //11
-                "uuid"          => Str::uuid(),
-                "title"         => "Api Key",
-                "description"   => "",
-                "route_name"    => "user_api_key.index",
-                "url"           => "/user_api_key",
-                "icon"          => "fas fa-key",
-                "actions"       => '["show","index", "create","destroy","edit"]',
+                "route_name"    => "invoice.index",
+                "url"           => "/invoice",
+                "icon"          => "fa fa-file-invoice",
+                "actions"       => '["show","index", "create", "edit", "destroy"]',
                 "order"         => 3,
             ],
-            [ //12
-                "uuid"          => Str::uuid(),
-                "title"         => "Files",
-                "description"   => "",
-                "route_name"    => "files.index",
-                "url"           => "/files",
-                "icon"          => "fas fa-folder",
-                "actions"       => '["show","index", "destroy","edit"]',
-                "order"         => 3,
-            ],
+            // [ //2
+            //     "uuid"          => Str::uuid(),
+            //     "title"         => "Article",
+            //     "description"   => "",
+            //     "route_name"    => "",
+            //     "url"           => "#",
+            //     "icon"          => "fa fa-newspaper",
+            //     "actions"       => '["show","index"]',
+            //     "order"         => 2,
+            // ],
+            // [ //3
+            //     "uuid"          => Str::uuid(),
+            //     "title"         => "All Article",
+            //     "parent_id"     => 2,
+            //     "description"   => "",
+            //     "route_name"    => "article.index",
+            //     "url"           => "/article",
+            //     "icon"          => "fas fa-arrow-circle-right",
+            //     "actions"       => '["show","index", "destroy","edit"]',
+            //     "order"         => 2,
+            // ],
+            // [ //4
+            //     "uuid"          => Str::uuid(),
+            //     "title"         => "Category",
+            //     "parent_id"     => 2,
+            //     "description"   => "",
+            //     "route_name"    => "article_categories.index",
+            //     "url"           => "/article_categories",
+            //     "icon"          => "fas fa-arrow-circle-right",
+            //     "actions"       => '["show","index", "destroy","edit"]',
+            //     "order"         => 2,
+            // ],
+            // [ //11
+            //     "uuid"          => Str::uuid(),
+            //     "title"         => "Api Key",
+            //     "description"   => "",
+            //     "route_name"    => "user_api_key.index",
+            //     "url"           => "/user_api_key",
+            //     "icon"          => "fas fa-key",
+            //     "actions"       => '["show","index", "create","destroy","edit"]',
+            //     "order"         => 3,
+            // ],
+            // [ //12
+            //     "uuid"          => Str::uuid(),
+            //     "title"         => "Files",
+            //     "description"   => "",
+            //     "route_name"    => "files.index",
+            //     "url"           => "/files",
+            //     "icon"          => "fas fa-folder",
+            //     "actions"       => '["show","index", "destroy","edit"]',
+            //     "order"         => 3,
+            // ],
         ];
 
         foreach($menus as $data) {
@@ -92,7 +112,7 @@ class PermissionAction extends Seeder
         }
 
 
-        for ($i = 1; $i <= 15; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
 
             AccessRoleToMenu::create([
                 "access_action_suffix" => "show",
@@ -119,41 +139,104 @@ class PermissionAction extends Seeder
                 "access_menu_id" => $i,
                 "access_role_id" => 1,
             ]);
-        }
 
-        foreach([5,6,7,8,9,10,11,13] as $val) {
+            /* Admin SIPI */
             AccessRoleToMenu::create([
                 "access_action_suffix" => "show",
-                "access_menu_id" => $val,
+                "access_menu_id" => $i,
                 "access_role_id" => 2,
             ]);
-
             AccessRoleToMenu::create([
                 "access_action_suffix" => "index",
-                "access_menu_id" => $val,
+                "access_menu_id" => $i,
                 "access_role_id" => 2,
             ]);
-
             AccessRoleToMenu::create([
                 "access_action_suffix" => "create",
-                "access_menu_id" => $val,
+                "access_menu_id" => $i,
                 "access_role_id" => 2,
             ]);
-
             AccessRoleToMenu::create([
                 "access_action_suffix" => "edit",
-                "access_menu_id" => $val,
+                "access_menu_id" => $i,
+                "access_role_id" => 2,
+            ]);
+            AccessRoleToMenu::create([
+                "access_action_suffix" => "destroy",
+                "access_menu_id" => $i,
                 "access_role_id" => 2,
             ]);
 
-            AccessRoleToMenu::create([
-                "access_action_suffix" => "destroy",
-                "access_menu_id" => $val,
-                "access_role_id" => 2,
-            ]);
+            if($i == 1) {
+                $this->add_finance($i);
+                $this->add_collection($i);
+            }
+            if($i == 2) {
+                $this->add_finance($i);
+            }
+            if($i == 3) {
+                $this->add_collection($i);
+            }
 
         }
 
+    }
 
+    function add_finance($i) {
+        /* Finance */
+        AccessRoleToMenu::create([
+            "access_action_suffix" => "show",
+            "access_menu_id" => $i,
+            "access_role_id" => 3,
+        ]);
+        AccessRoleToMenu::create([
+            "access_action_suffix" => "index",
+            "access_menu_id" => $i,
+            "access_role_id" => 3,
+        ]);
+        AccessRoleToMenu::create([
+            "access_action_suffix" => "create",
+            "access_menu_id" => $i,
+            "access_role_id" => 3,
+        ]);
+        AccessRoleToMenu::create([
+            "access_action_suffix" => "edit",
+            "access_menu_id" => $i,
+            "access_role_id" => 3,
+        ]);
+        AccessRoleToMenu::create([
+            "access_action_suffix" => "destroy",
+            "access_menu_id" => $i,
+            "access_role_id" => 3,
+        ]);
+    }
+
+    function add_collection($i) {
+       /* Finance */
+       AccessRoleToMenu::create([
+        "access_action_suffix" => "show",
+        "access_menu_id" => $i,
+        "access_role_id" => 4,
+    ]);
+    AccessRoleToMenu::create([
+        "access_action_suffix" => "index",
+        "access_menu_id" => $i,
+        "access_role_id" => 4,
+    ]);
+    AccessRoleToMenu::create([
+        "access_action_suffix" => "create",
+        "access_menu_id" => $i,
+        "access_role_id" => 4,
+    ]);
+    AccessRoleToMenu::create([
+        "access_action_suffix" => "edit",
+        "access_menu_id" => $i,
+        "access_role_id" => 4,
+    ]);
+    AccessRoleToMenu::create([
+        "access_action_suffix" => "destroy",
+        "access_menu_id" => $i,
+        "access_role_id" => 4,
+    ]); 
     }
 }

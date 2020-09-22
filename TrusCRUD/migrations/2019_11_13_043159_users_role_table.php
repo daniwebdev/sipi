@@ -29,7 +29,7 @@ class UsersRoleTable extends Migration
 
             $table->timestamps();
 
-            $table->index(['id','uuid','parent_id','title','route_name','url','order',]);
+            $table->index(['id','uuid',]);
         });
 
         Schema::create('access_roles', function(Blueprint $table) {

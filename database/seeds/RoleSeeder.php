@@ -20,8 +20,20 @@ class RoleSeeder extends Seeder
         ]);
         //
         AccessRole::create([
-            "name" => "User",
-            "description" => "Public User",
+            "name" => "Admin",
+            "description" => "Admin SIPI",
+            "uuid" => Str::uuid()
+        ]);
+        //
+        AccessRole::create([
+            "name" => "Finance",
+            "description" => "Finance",
+            "uuid" => Str::uuid()
+        ]);
+        //
+        AccessRole::create([
+            "name" => "Collection",
+            "description" => "Collection",
             "uuid" => Str::uuid()
         ]);
 
