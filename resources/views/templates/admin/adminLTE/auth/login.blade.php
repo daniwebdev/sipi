@@ -4,7 +4,7 @@
 @section('content')
 <div class="login-box">
     <div class="login-logo">
-        <a href="/">{{config('app.name')}}d</a>
+        <a href="/">{{config('app.name')}}</a>
     </div>
     <!-- /.login-logo -->
     <div class="card" style="border-radius: 9px">

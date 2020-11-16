@@ -53,6 +53,16 @@ class PermissionAction extends Seeder
                 "actions"       => '["show","index", "create", "edit", "destroy"]',
                 "order"         => 3,
             ],
+            [ //3
+                "uuid"          => Str::uuid(),
+                "title"         => "Users",
+                "description"   => "",
+                "route_name"    => "users.index",
+                "url"           => "/users",
+                "icon"          => "fa fa-users",
+                "actions"       => '["show","index", "create", "edit", "destroy"]',
+                "order"         => 3,
+            ],
             // [ //2
             //     "uuid"          => Str::uuid(),
             //     "title"         => "Article",
