@@ -21,8 +21,8 @@
             <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Messages</span>
-              <span class="info-box-number">1,410</span>
+              <span class="info-box-text">Total Billing</span>
+              <span class="info-box-number">0</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -33,8 +33,8 @@
             <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Messages</span>
-              <span class="info-box-number">1,410</span>
+              <span class="info-box-text">Total Paid</span>
+              <span class="info-box-number">0</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -45,15 +45,17 @@
             <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Messages</span>
-              <span class="info-box-number">1,410</span>
+              <span class="info-box-text">Total Unpaid</span>
+              <span class="info-box-number">0</span>
             </div>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
       </div>
-      <div class="row">
+
+      {{-- Chart --}}
+      <div class="row" hidden>
         <div class="col-lg-6">
           <div class="card">
             <div class="card-header border-0">
