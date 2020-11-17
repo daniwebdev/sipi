@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\ContractSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserProviderSeeder::class);
         $this->call(PermissionAction::class);
         $this->call(RoleSeeder::class);
+        $this->call(ContractSeeder::class);
         // $this->call(RegionalProvinceSeeder::class);
     }
 }

@@ -37,16 +37,17 @@ Contract
       <!-- /.card-header -->
       <div class="card-body p-0">
           <div class="table-responsive">
-              <table class="table table-striped">
+              <table class="table table-striped" style="min-width: 1200px">
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-										<th>Data Contract</th>
-										<th>Data Project</th>
-										<th>Data Customer</th>
-										<th>Total Nilai</th>
+										<th style="width: 150px">Data Contract</th>
+										<th style="width: 250px">Data Project</th>
+										<th style="width: 170px">Data Customer</th>
+										<th style="width: 150px">Total Nilai</th>
+										<th style="width: 100px">Invoice</th>
                     <th style="width: 80px">Status</th>
-                    <th style="width: 160px">Action</th>
+                    <th style="width: 100px">Action</th>
                   </tr>
                 </thead>
                 @if (!count($results))
@@ -62,21 +63,28 @@ Contract
                   @foreach ($results as $item)
 
                   <tr>
-                    <td>{{ $no }}</td>
-										<td>{{ $item->no_contract }}</td>
-										<td>{{ $item->project_name }}</td>
-										<td>{{ $item->customer }}</td>
-										<td>{{ $item->total_contract }}</td>
-										<td>{{ $item->status_contract }}</td>
+                    <td style="vertical-align: middle">{{ $no }}</td>
+                    <td style="vertical-align: middle">
+                      {{ $item->no_contract }}<br/>
+                      <small>{{$item->start_contract}} s/d {{ $item->end_contract }}</small>
+                    </td>
+										<td style="vertical-align: middle">{{ $item->project_name }}</td>
+                    <td style="vertical-align: middle">
+                      {{ $item->customer }}
+                      <br/>
+                      <small><i class="fa fa-user-circle" aria-hidden="true"></i> {{ $item->end_customer }}</small>
+                    </td>
+										<td style="vertical-align: middle">Rp. {{ number_format($item->total_contract_value) }}</td>
+										<td style="vertical-align: middle">-</td>
 
-                    <td>
+                    <td style="vertical-align: middle">
                       @if(!$item->deleted_at)
                         <span class="badge bg-success">Aktif</span>
                       @else
                         <span class="badge bg-danger">Deleted</span>
                       @endif
                     </td>
-                    <td>
+                    <td style="vertical-align: middle">
                         <a href="{{route($resource.'.edit', $item->id)}}" class="btn btn-primary btn-xs text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
                         @if($item->deleted_at)
                         <button class="btn btn-success btn-xs text-white restore" data-id="{{$item->id}}"><i class="fas fa-sync-alt"></i> Restore</button>

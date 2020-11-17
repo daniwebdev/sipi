@@ -17,9 +17,14 @@ class CreatePurchasesTable extends Migration
             
 			$table->id();
 			$table->string('no_contract');
-			$table->string('project_name');
 			$table->string('customer');
-			$table->integer('total_contract')->default(0);
+			$table->string('end_customer');
+			$table->string('project_name');
+			$table->string('project_year', 4)->nullable();
+			$table->string('type_contract')->nullable();
+			$table->date('start_contract')->nullable();
+			$table->date('end_contract')->nullable();
+			$table->integer('total_contract_value')->default(0);
 			$table->integer('status_contract')->default(0);
 
             $table->timestamps();
