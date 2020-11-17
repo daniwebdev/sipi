@@ -24,13 +24,13 @@ Form Invoice
           <div class="row">
 
 
-            <!-- Purchase Id -->
+            <!-- Contract Id -->
             <div class="form-group col-md-12">
-              <label for="purchase_id">Purchase Id <span class="text-danger">*</span></label>
-              <select name="purchase_id" id="purchase_id" selectpicker class="form-control">
+              <label for="Contract_id">Contract Id <span class="text-danger">*</span></label>
+              <select name="Contract_id" id="Contract_id" selectpicker class="form-control">
                 <option value="">- Chosee -</option>
-                @foreach (\App\Models\Purchase::get() as $purchase)
-                    <option value="{{$purchase->id}}">{{$purchase->name}}</option>
+                @foreach (\App\Models\Contract::get() as $Contract)
+                    <option value="{{$Contract->id}}">{{$Contract->name}}</option>
                 @endforeach
               </select>
             </div>

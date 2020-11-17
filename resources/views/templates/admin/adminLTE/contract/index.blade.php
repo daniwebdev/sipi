@@ -1,10 +1,10 @@
 @extends('templates.admin.adminLTE.layout')
 
 @push('title')
-    Purchase
+    Contract
 @endpush
 @push('page-name')
-Purchase
+Contract
 @endpush
 
 @section('content')
@@ -13,7 +13,7 @@ Purchase
     <div class="card">
       <div class="card-header">
 
-        @if (Role::isAllow("insert"))
+        @if (Role::isAllow("create"))
             <div class="btn-group">
             <a href="{{route($resource.'.create')}}" class="btn btn-primary btn-sm float-left">
                 <i class="fa fa-plus"></i> Create
@@ -41,12 +41,10 @@ Purchase
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-										<th>No Purchase Order</th>
-										<th>Nama Project</th>
-										<th>Customer</th>
-										<th>Nominal Purchase Order</th>
-										<th>Status Delivery</th>
-
+										<th>Data Contract</th>
+										<th>Data Project</th>
+										<th>Data Customer</th>
+										<th>Total Nilai</th>
                     <th style="width: 80px">Status</th>
                     <th style="width: 160px">Action</th>
                   </tr>
@@ -65,11 +63,11 @@ Purchase
 
                   <tr>
                     <td>{{ $no }}</td>
-										<td>{{ $item->no_purchase_order }}</td>
-										<td>{{ $item->nama_project }}</td>
+										<td>{{ $item->no_contract }}</td>
+										<td>{{ $item->project_name }}</td>
 										<td>{{ $item->customer }}</td>
-										<td>{{ $item->nominal_purchase_order }}</td>
-										<td>{{ $item->status_delivery }}</td>
+										<td>{{ $item->total_contract }}</td>
+										<td>{{ $item->status_contract }}</td>
 
                     <td>
                       @if(!$item->deleted_at)

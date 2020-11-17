@@ -15,15 +15,15 @@ class Purchase extends CrudGenerator {
 
     public function initial() {
         $this->setName('Purchase');
-        $this->setSearchable('nama_project');
+        $this->setSearchable('project_name');
         $this->withMenu(true); //FALSE = menu not generate
         $this->withUUID(false);
 
-        $this->addColumn('no_purchase_order', 'string');
-        $this->addColumn('nama_project', 'string');
+        $this->addColumn('no_contract', 'string');
+        $this->addColumn('project_name', 'string');
         $this->addColumn('customer', 'string');
-        $this->addColumn('nominal_purchase_order', 'integer');
-        $this->addColumn('status_delivery', 'integer');
+        $this->addColumn('total_contract', 'integer');
+        $this->addColumn('status_contract', 'integer');
 
     }
 

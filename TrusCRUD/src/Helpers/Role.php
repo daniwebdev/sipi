@@ -112,8 +112,9 @@ class Role {
         if(in_array($current, self::$bypass)) {
             return true;
         }
-        
+        // dd('');
         $base_route = explode(".", $current)[0];
+
         $get = Cache::remember('role-'.$role_id.':'.$action.':'.$base_route, 60*60, function() use ($role_id,$base_route, $action){
             $get = DB::table('access_role_to_menus AS prm')
             ->join('access_menus AS menu', 'menu.id', "=", "prm.access_menu_id")

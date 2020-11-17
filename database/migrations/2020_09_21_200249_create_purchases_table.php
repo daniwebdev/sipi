@@ -13,14 +13,14 @@ class CreatePurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             
 			$table->id();
-			$table->string('no_purchase_order');
-			$table->string('nama_project');
+			$table->string('no_contract');
+			$table->string('project_name');
 			$table->string('customer');
-			$table->integer('nominal_purchase_order');
-			$table->integer('status_delivery');
+			$table->integer('total_contract')->default(0);
+			$table->integer('status_contract')->default(0);
 
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('contracts');
     }
 }

@@ -18,5 +18,5 @@ Route::resource('invitation', 'InvitationController');
 Route::resource('invoice', 'InvoiceController');
 //End Route invoice
 //Begin Route purchase
-Route::resource('purchase', 'PurchaseController');
+Route::resource('contract', 'ContractController');
 //End Route purchase

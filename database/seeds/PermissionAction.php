@@ -35,10 +35,10 @@ class PermissionAction extends Seeder
             ],
             [ //2
                 "uuid"          => Str::uuid(),
-                "title"         => "Purchase",
+                "title"         => "Contracts",
                 "description"   => "",
-                "route_name"    => "purchase.index",
-                "url"           => "/purchase",
+                "route_name"    => "contract.index",
+                "url"           => "/contract",
                 "icon"          => "fa fa-box-open",
                 "actions"       => '["show","index", "create", "edit", "destroy"]',
                 "order"         => 2,

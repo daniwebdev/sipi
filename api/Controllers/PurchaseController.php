@@ -26,7 +26,7 @@ class PurchaseController extends APIController
         try {
 
             if($request->q != null) {
-                $data = $model->where('nama_project','like', "%$request->q%")->paginate(10);
+                $data = $model->where('project_name','like', "%$request->q%")->paginate(10);
             } else {
                 $data = $model->paginate(10);
             }
@@ -47,11 +47,11 @@ class PurchaseController extends APIController
         try {
             DB::beginTransaction();
 
-			$model->no_purchase_order      = $request->no_purchase_order;
-			$model->nama_project      = $request->nama_project;
+			$model->no_contract      = $request->no_contract;
+			$model->project_name      = $request->project_name;
 			$model->customer      = $request->customer;
-			$model->nominal_purchase_order      = $request->nominal_purchase_order;
-			$model->status_delivery      = $request->status_delivery;
+			$model->total_contract      = $request->total_contract;
+			$model->status_contract      = $request->status_contract;
 
 
             $model->save();

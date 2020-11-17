@@ -13,7 +13,7 @@ Invoice
     <div class="card">
       <div class="card-header">
 
-        @if (Role::isAllow("insert"))
+        @if (Role::isAllow("create"))
             <div class="btn-group">
             <a href="{{route($resource.'.create')}}" class="btn btn-primary btn-sm float-left">
                 <i class="fa fa-plus"></i> Create
@@ -41,7 +41,7 @@ Invoice
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-										<th>Purchase Id</th>
+										<th>Contract Id</th>
 										<th>No Invoice</th>
 
                     <th style="width: 80px">Status</th>
@@ -62,7 +62,7 @@ Invoice
 
                   <tr>
                     <td>{{ $no }}</td>
-										<td>{{ $item->purchase_id }}</td>
+										<td>{{ $item->Contract_id }}</td>
 										<td>{{ $item->no_invoice }}</td>
 
                     <td>

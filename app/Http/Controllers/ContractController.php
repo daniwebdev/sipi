@@ -11,30 +11,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Purchase;
+use App\Models\Contract;
 use Illuminate\Support\Facades\DB;
+use TrusCRUD\Helpers\Role;
 
-
-class PurchaseController extends Controller
+class ContractController extends Controller
 {
 
-    protected $view  = 'purchase';
+    protected $view  = 'contract';
 
     function __construct()
     {
         parent::__construct();
         $this->base             = route($this->view.'.index');
-        $this->data['resource'] = $this->view;
+        $this->data['resource'] = 'contract';
         $this->view             = $this->template.$this->view;
     }
 
-    public function index(Purchase $model, Request $req) {
+    public function index(Contract $model, Request $req) {
 
         if($req->get('search') != '') {
 
             $serach = strtolower($req->get('search'));
 
-            $model = $model->where(DB::raw('LOWER(nama_project)'), "LIKE", "%$serach%");
+            $model = $model->where(DB::raw('LOWER(project_name)'), "LIKE", "%$serach%");
         }
         
         $this->data['results'] = $model->paginate(10);
@@ -50,26 +50,26 @@ class PurchaseController extends Controller
 
     }
 
-    public function edit(Purchase $model, $id) {
+    public function edit(Contract $model, $id) {
         $this->data['data'] = $model->find($id)->first();
         return view($this->view.'.form', $this->data);
     }
 
-    public function store(Purchase $model, Request $req) {
+    public function store(Contract $model, Request $req) {
 
         try {   
             DB::beginTransaction();
             if(isset($req->id)) {
-                $model = Purchase::where('id', $req->id)->first();
+                $model = Contract::where('id', $req->id)->first();
             } else {
                 
             }
 
-			$model->no_purchase_order      = $req->no_purchase_order;
-			$model->nama_project      = $req->nama_project;
+			$model->no_contract      = $req->no_contract;
+			$model->project_name      = $req->project_name;
 			$model->customer      = $req->customer;
-			$model->nominal_purchase_order      = $req->nominal_purchase_order;
-			$model->status_delivery      = $req->status_delivery;
+			$model->total_contract      = $req->total_contract;
+			$model->status_contract      = $req->status_contract;
 
 
             $model->save();
@@ -99,7 +99,7 @@ class PurchaseController extends Controller
 
     }
 
-    public function destroy(Purchase $model, $id) {
+    public function destroy(Contract $model, $id) {
 
         try {
             $model->where('id', $id)->delete();

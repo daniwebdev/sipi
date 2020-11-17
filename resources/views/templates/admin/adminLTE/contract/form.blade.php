@@ -1,11 +1,11 @@
 @extends('templates.admin.adminLTE.layout')
 
 @push('title')
-Form Purchase
+Form Contract
 @endpush
 
 @push('page-name')
-Form Purchase
+Form Contract
 @endpush
 
 @section('content')
@@ -20,20 +20,20 @@ Form Purchase
         <input type="hidden" name="id" value="{{isset($data) ? $data->id:''}}" />
         
         <div class="card-body">
-          <h4>Data Purchase</h4>
+          <h4>Data Contract</h4>
           <div class="row">
 
 
-            <!-- No Purchase Order -->
+            <!-- No Contract Order -->
             <div class="form-group col-md-12">
-              <label for="no_purchase_order">No Purchase Order <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="no_purchase_order" type="text" class="form-control" id="no_purchase_order" placeholder="" value="{{isset($data) ? $data->no_purchase_order:''}}">
+              <label for="no_contract">No Contract Order <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="no_contract" type="text" class="form-control" id="no_contract" placeholder="" value="{{isset($data) ? $data->no_contract:''}}">
             </div>
             
             <!-- Nama Project -->
             <div class="form-group col-md-12">
-              <label for="nama_project">Nama Project <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="nama_project" type="text" class="form-control" id="nama_project" placeholder="" value="{{isset($data) ? $data->nama_project:''}}">
+              <label for="project_name">Nama Project <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="project_name" type="text" class="form-control" id="project_name" placeholder="" value="{{isset($data) ? $data->project_name:''}}">
             </div>
             
             <!-- Customer -->
@@ -42,16 +42,16 @@ Form Purchase
               <input autocomplete="off" name="customer" type="text" class="form-control" id="customer" placeholder="" value="{{isset($data) ? $data->customer:''}}">
             </div>
             
-            <!-- Nominal Purchase Order -->
+            <!-- Nominal Contract Order -->
             <div class="form-group col-md-12">
-              <label for="nominal_purchase_order">Nominal Purchase Order <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="nominal_purchase_order" type="number" class="form-control" id="nominal_purchase_order" placeholder="" value="{{isset($data) ? $data->nominal_purchase_order:''}}">
+              <label for="total_contract">Nominal Contract Order <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="total_contract" type="number" class="form-control" id="total_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
             </div>
             
             <!-- Status Delivery -->
             <div class="form-group col-md-12">
-              <label for="status_delivery">Status Delivery <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="status_delivery" type="number" class="form-control" id="status_delivery" placeholder="" value="{{isset($data) ? $data->status_delivery:''}}">
+              <label for="status_contract">Status Delivery <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="status_contract" type="number" class="form-control" id="status_contract" placeholder="" value="{{isset($data) ? $data->status_contract:''}}">
             </div>
             
 
