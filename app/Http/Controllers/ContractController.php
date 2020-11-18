@@ -65,11 +65,13 @@ class ContractController extends Controller
                 
             }
 
-			$model->no_contract      = $req->no_contract;
-			$model->project_name      = $req->project_name;
-			$model->customer      = $req->customer;
-			$model->total_contract      = $req->total_contract;
-			$model->status_contract      = $req->status_contract;
+			$model->no_contract     = $req->no_contract;
+			$model->project_name    = $req->project_name;
+			$model->customer        = $req->customer;
+			$model->total_contract  = $req->total_contract;
+            $model->status_contract = $req->status_contract;
+
+			$model->balance         = $req->total_contract;
 
 
             $model->save();

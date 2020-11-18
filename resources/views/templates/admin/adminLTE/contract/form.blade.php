@@ -25,21 +25,27 @@ Form Contract
 
 
             <!-- No Contract Order -->
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label for="no_contract">No Contract Order <span class="text-danger">*</span></label>
               <input autocomplete="off" name="no_contract" type="text" class="form-control" id="no_contract" placeholder="" value="{{isset($data) ? $data->no_contract:''}}">
             </div>
             
             <!-- Nama Project -->
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label for="project_name">Nama Project <span class="text-danger">*</span></label>
               <input autocomplete="off" name="project_name" type="text" class="form-control" id="project_name" placeholder="" value="{{isset($data) ? $data->project_name:''}}">
             </div>
             
             <!-- Customer -->
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label for="customer">Customer <span class="text-danger">*</span></label>
               <input autocomplete="off" name="customer" type="text" class="form-control" id="customer" placeholder="" value="{{isset($data) ? $data->customer:''}}">
+            </div>
+            
+            <!-- Customer -->
+            <div class="form-group col-md-6">
+              <label for="end_customer">End Customer <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="end_customer" type="text" class="form-control" id="end_customer" placeholder="" value="{{isset($data) ? $data->end_customer:''}}">
             </div>
             
             <!-- Nominal Contract Order -->

@@ -25,7 +25,9 @@ class CreatePurchasesTable extends Migration
 			$table->date('start_contract')->nullable();
 			$table->date('end_contract')->nullable();
 			$table->integer('total_contract_value')->default(0);
-			$table->integer('status_contract')->default(0);
+            $table->integer('status_contract')->default(0);
+            
+			$table->integer('balance')->default(0);
 
             $table->timestamps();
         });

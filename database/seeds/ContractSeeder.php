@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Contract;
+use App\Models\Invoice;
 use Illuminate\Database\Seeder;
 
 class ContractSeeder extends Seeder
@@ -15,7 +16,7 @@ class ContractSeeder extends Seeder
     public function run()
     {
         for ($i=1; $i <= 5 ; $i++) { 
-            Contract::create([
+            $contract = Contract::create([
                 "no_contract"          => "233$i/HK8090/PIN.00.00/2015",
                 "customer"             => "PT PERUSAHAAN $i",
                 "end_customer"         => "Muhamad Yusup Hamdani",
@@ -26,6 +27,15 @@ class ContractSeeder extends Seeder
                 "end_contract"         => "2020-05-02",
                 "total_contract_value" => "20000000",
                 "status_contract"      => "Aktif",
+            ]);
+
+            Invoice::create([
+                "contract_id"     =>  $contract->id,
+                "no_invoice"      =>  '2019/MMT/050'.$i,
+                "date_invoice"    =>  '2020-03-03',
+                "periode_invoice" =>  '2020-03-03 s/d 2020-02-03',
+                "total_invoice"   =>  1000000,
+                "status"          =>  'UNPAID',
             ]);
         }
     }

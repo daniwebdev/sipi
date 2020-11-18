@@ -41,9 +41,11 @@ Invoice
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-										<th>Contract Id</th>
-										<th>No Invoice</th>
-
+										<th style="width: 130px">No Invoice</th>
+										<th style="width: 140px">Tgl. Invoice</th>
+										<th>Data Contract</th>
+                    
+										<th>Total Invoce</th>
                     <th style="width: 80px">Status</th>
                     <th style="width: 160px">Action</th>
                   </tr>
@@ -61,18 +63,27 @@ Invoice
                   @foreach ($results as $item)
 
                   <tr>
-                    <td>{{ $no }}</td>
-										<td>{{ $item->Contract_id }}</td>
-										<td>{{ $item->no_invoice }}</td>
-
-                    <td>
+                    <td style="vertical-align: middle">{{ $no }}</td>
+                    <td style="vertical-align: middle">{{ $item->no_invoice }}</td>
+                    <td style="vertical-align: middle">{{ date('d M Y', strtotime($item->date_invoice)) }}</td>
+                    <td style="vertical-align: middle">
+                      {{ $item->contract->no_contract }}<br/>
+                      <i class="fa fa-user-circle" aria-hidden="true"></i> {{ $item->contract->end_customer  }}
+                    </td>
+                    
+                    <td style="vertical-align: middle">Rp. {{ number_format($item->total_invoice) }}</td>
+                    <td style="vertical-align: middle">
                       @if(!$item->deleted_at)
-                        <span class="badge bg-success">Aktif</span>
+                        @if ($item->status == 'PAID')
+                          <span class="badge bg-success">{{$item->status}}</span>
+                        @else
+                          <span class="badge bg-danger">{{$item->status}}</span>
+                        @endif
                       @else
                         <span class="badge bg-danger">Deleted</span>
                       @endif
                     </td>
-                    <td>
+                    <td style="vertical-align: middle">
                         <a href="{{route($resource.'.edit', $item->id)}}" class="btn btn-primary btn-xs text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
                         @if($item->deleted_at)
                         <button class="btn btn-success btn-xs text-white restore" data-id="{{$item->id}}"><i class="fas fa-sync-alt"></i> Restore</button>
