@@ -37,7 +37,7 @@ class ContractController extends Controller
             $model = $model->where(DB::raw('LOWER(project_name)'), "LIKE", "%$serach%");
         }
         
-        $this->data['results'] = $model->paginate(10);
+        $this->data['results'] = $model->orderByDesc('id')->paginate(10);
 
         return view($this->view.'.index', $this->data);
     }
@@ -57,6 +57,7 @@ class ContractController extends Controller
 
     public function store(Contract $model, Request $req) {
 
+        // dd($req->all());
         try {   
             DB::beginTransaction();
             if(isset($req->id)) {
@@ -64,15 +65,18 @@ class ContractController extends Controller
             } else {
                 
             }
+            $model->id                      = $req->id;
+            $model->no_contract             = $req->no_contract;
+            $model->project_name            = $req->project_name;
+            $model->customer                = $req->customer;
+            $model->end_customer            = $req->end_customer;
+            $model->project_year            = $req->project_year;
+            $model->total_contract_value    = getInt($req->total_contract_value);
+            $model->start_contract          = implode('-', array_reverse(explode('/', $req->start_contract)));
+            $model->end_contract            = implode('-', array_reverse(explode('/', $req->end_contract)));
+            $model->status_contract         = $req->status_contract;
 
-			$model->no_contract     = $req->no_contract;
-			$model->project_name    = $req->project_name;
-			$model->customer        = $req->customer;
-			$model->total_contract  = $req->total_contract;
-            $model->status_contract = $req->status_contract;
-
-			$model->balance         = $req->total_contract;
-
+			$model->balance                 = $model->total_contract_value;
 
             $model->save();
 

@@ -47,17 +47,39 @@ Form Contract
               <label for="end_customer">End Customer <span class="text-danger">*</span></label>
               <input autocomplete="off" name="end_customer" type="text" class="form-control" id="end_customer" placeholder="" value="{{isset($data) ? $data->end_customer:''}}">
             </div>
-            
-            <!-- Nominal Contract Order -->
-            <div class="form-group col-md-12">
-              <label for="total_contract">Nominal Contract Order <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="total_contract" type="number" class="form-control" id="total_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+       
+            <!-- Year -->
+            <div class="form-group col-md-6">
+              <label for="project_year">Tahun Proyek <span class="text-danger">*</span></label>
+              <input year autocomplete="off" name="project_year" type="text" class="form-control" id="project_year" placeholder="" value="{{isset($data) ? $data->end_customer:''}}">
             </div>
             
-            <!-- Status Delivery -->
+            <!-- Total Contract Value -->
+            <div class="form-group col-md-6">
+              <label for="total_contract_value">Total Contract Value <span class="text-danger">*</span></label>
+              <input autocomplete="off" name="total_contract_value" type="text" class="form-control" id="total_contract_value" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+            </div>
+            
+            <!-- Total Contract Value -->
+            <div class="form-group col-md-6">
+              <label for="start_contract">Start Contract <span class="text-danger">*</span></label>
+              <input tgl autocomplete="off" name="start_contract" type="text" class="form-control" id="start_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+            </div>
+            
+            <!-- Total Contract Value -->
+            <div class="form-group col-md-6">
+              <label for="end_contract">End Contract <span class="text-danger">*</span></label>
+              <input tgl autocomplete="off" name="end_contract" type="text" class="form-control" id="end_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+            </div>
+            
+            <!-- Status -->
             <div class="form-group col-md-12">
-              <label for="status_contract">Status Delivery <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="status_contract" type="number" class="form-control" id="status_contract" placeholder="" value="{{isset($data) ? $data->status_contract:''}}">
+              <label for="status_contract">Status<span class="text-danger">*</span></label>
+              <select name="status_contract" id="status_contract" class="form-control">
+                <option value="">- Pilih -</option>
+                <option value="1">Aktif</option>
+                <option value="0">Habis</option>
+              </select>
             </div>
             
 
@@ -80,12 +102,33 @@ Form Contract
 @endsection
 
 @push('scripts')
-
+<script src="/theme/plugins/moment/moment-with-locales.min.js"></script>
+<script src="/theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="/theme/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script>
+  $('[year]').inputmask({
+    mask: '####'
+  });
+
+  $('[tgl]').inputmask({
+    mask: '##/##/####'
+  });
+
+  $('#total_contract_value').inputmask({
+    alias: 'currency',
+    rightAlign: false,
+    prefix: " Rp. ",
+    digits: '0',
+    groupSeparator: ',',
+  });
+
+  $('[tgl]').datepicker({
+    'dateFormat': 'dd/mm/yy'
+  });
 
 </script>
 @endpush
 
 @push('styles')
-
+  <link rel="stylesheet" href="/theme/plugins/jquery-ui/jquery-ui.min.css">
 @endpush

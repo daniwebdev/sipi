@@ -26,7 +26,8 @@ class ContractSeeder extends Seeder
                 "start_contract"       => "2020-02-01",
                 "end_contract"         => "2020-05-02",
                 "total_contract_value" => "20000000",
-                "status_contract"      => "Aktif",
+                "balance"              => "20000000",
+                "status_contract"      => 1,
             ]);
 
             Invoice::create([
