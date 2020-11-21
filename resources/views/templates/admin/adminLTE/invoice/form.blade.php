@@ -48,14 +48,14 @@ Form Invoice
 
             <!-- Date Invoice -->
             <div class="form-group col-md-3">
-              <label for="date_invoice">Start Bill <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="date_invoice" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
+              <label for="start_bill">Start Bill <span class="text-danger">*</span></label>
+              <input tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="start_bill" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
             </div>
 
             <!-- Date Invoice -->
             <div class="form-group col-md-3">
-              <label for="date_invoice">End Bill <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="date_invoice" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
+              <label for="end_bill">End Bill <span class="text-danger">*</span></label>
+              <input tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="end_bill" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
             </div>
 
             <!-- Date Invoice -->
@@ -147,6 +147,9 @@ Form Invoice
 <script>
 $('[selectpicker]').selectpicker();
 
+$(document).ready(function() {
+  $('#contract_id').trigger('change');
+})
 $('#contract_id').change(function() {
   let data = $(this).find(':selected').data('json');
   

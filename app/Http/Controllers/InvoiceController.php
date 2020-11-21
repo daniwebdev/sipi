@@ -10,6 +10,7 @@
 */
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
             $model = $model->where(DB::raw('LOWER(no_invoice)'), "LIKE", "%$serach%");
         }
         
-        $this->data['results'] = $model->paginate(10);
+        $this->data['results'] = $model->orderByDesc('id')->paginate(10);
 
         return view($this->view.'.index', $this->data);
     }
@@ -65,11 +66,23 @@ class InvoiceController extends Controller
                 
             }
 
-			$model->purchase_id      = $req->purchase_id;
-			$model->no_invoice      = $req->no_invoice;
+            $peirode_invoice         = array_map(function($x) {
+                $tanggal = implode('-', array_reverse(explode('/', $x)));
+                return $tanggal;
+            }, $req->bill);
 
-
+			$model->date_invoice        = implode('-', array_reverse(explode('/', $req->date_invoice)));
+			$model->contract_id         = $req->contract_id;
+			$model->no_invoice          = $req->no_invoice;
+            $model->total_invoice       = getInt($req->total_invoice);
+            $model->periode_invoice     = implode(' s/d ', $peirode_invoice);
+			$model->status              = $req->status;
             $model->save();
+
+            if($req->status == 'PAID') {
+                $contract = Contract::find($req->contract_id);
+                $contract->decrement('balance', $model->total_invoice);
+            }
 
             $status  = 'success';
             $message = "Save Successfully";

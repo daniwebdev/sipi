@@ -107,7 +107,7 @@
         {
           backgroundColor: '#007bff',
           borderColor    : '#007bff',
-          data           : [1000, 2000000, 3000000, 2500000, 2700000, 2500000, 3000000]
+          data           : {!! $total_invoice !!}
         },
         // {
         //   backgroundColor: '#ced4da',
