@@ -39,7 +39,7 @@ class HomeController extends Controller
 
         $this->data['total_contract']        = Contract::sum('total_contract_value'); 
         $this->data['total_contract_unpaid'] = Invoice::where('status', 'UNPAID')->sum('total_invoice'); 
-        $this->data['total_contract_paid']   = $this->data['total_contract']-$this->data['total_contract_unpaid']; 
+        $this->data['total_contract_paid']   = Invoice::where('status', 'PAID')->sum('total_invoice');; 
 
         $months = range(1,12);
         $paid_invs = [];
