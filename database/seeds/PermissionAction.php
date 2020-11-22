@@ -182,7 +182,8 @@ class PermissionAction extends Seeder
                 $this->add_collection($i);
             }
             if($i == 2) {
-                $this->add_finance($i);
+                // $this->add_finance($i);
+                $this->add_collection($i);
             }
             if($i == 3) {
                 $this->add_collection($i);
