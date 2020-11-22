@@ -37,20 +37,23 @@ class HomeController extends Controller
             "users" => User::count()
         ];
 
-        $this->data['total_contract']        = Invoice::sum('total_invoice'); 
+        $this->data['total_contract']        = Contract::sum('total_contract_value'); 
         $this->data['total_contract_unpaid'] = Invoice::where('status', 'UNPAID')->sum('total_invoice'); 
         $this->data['total_contract_paid']   = $this->data['total_contract']-$this->data['total_contract_unpaid']; 
 
         $months = range(1,12);
-        $total_invs = [];
+        $paid_invs = [];
+        $unpaid_invs = [];
 
         foreach($months as $value) {
             $bln = date('Y', time()+60*60*7).str_pad($value, 2, 0, STR_PAD_LEFT);
 
-            $total_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'PAID')->sum('total_invoice');
+            $paid_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'PAID')->sum('total_invoice');
+            $unpaid_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'UNPAID')->sum('total_invoice');
         }
 
-        $this->data['total_invoice'] = json_encode($total_invs);
+        $this->data['total_invoice_paid'] = json_encode($paid_invs);
+        $this->data['total_invoice_unpaid'] = json_encode($unpaid_invs);
 
         return view($this->template.'.dashboard.main', $this->data);
     }

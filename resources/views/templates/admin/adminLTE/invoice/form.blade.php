@@ -43,13 +43,13 @@ Form Invoice
             <!-- Date Invoice -->
             <div class="form-group col-md-6">
               <label for="date_invoice">Date of Invoice <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="date_invoice" type="text" class="form-control" id="date_invoice" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
+              <input value="{{isset($data) ? $data->periode_invoice[0]:''}}" tgl autocomplete="off" name="date_invoice" type="text" class="form-control" id="date_invoice" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
             </div>
 
             <!-- Date Invoice -->
             <div class="form-group col-md-3">
               <label for="start_bill">Start Bill <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="start_bill" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
+              <input value="{{isset($data) ? $data->periode_invoice[1]:''}}" tgl autocomplete="off" name="bill[]" type="text" class="form-control" id="start_bill" placeholder="" value="{{isset($data) ? $data->date_invoice:''}}">
             </div>
 
             <!-- Date Invoice -->
@@ -68,8 +68,8 @@ Form Invoice
             <div class="form-group col-md-3">
               <label for="status">Status <span class="text-danger">*</span></label>
               <select class="form-control" selectpicker name="status" id="status">
-                <option value="UNPAID">Unpaid</option>
-                <option value="PAID">Paid</option>
+                <option {{isset($data) && $data->status == 'UNPAID' ? 'selected':''}} value="UNPAID">Unpaid</option>
+                <option {{isset($data) && $data->status == 'PAID' ? 'selected':''}} value="PAID">Paid</option>
               </select>
             </div>
 

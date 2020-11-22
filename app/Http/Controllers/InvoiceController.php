@@ -38,6 +38,10 @@ class InvoiceController extends Controller
             $model = $model->where(DB::raw('LOWER(no_invoice)'), "LIKE", "%$serach%");
         }
         
+        if($req->get('status') != '') {
+            $model = $model->where('status', $req->get('status'));
+        }
+
         $this->data['results'] = $model->orderByDesc('id')->paginate(10);
 
         return view($this->view.'.index', $this->data);
@@ -52,7 +56,10 @@ class InvoiceController extends Controller
     }
 
     public function edit(Invoice $model, $id) {
-        $this->data['data'] = $model->find($id)->first();
+        $data = $model->find($id);
+        $data->periode_invoice = array_map(fn($x) => date('d/m/Y', strtotime($x)), explode(' s/d ', $data->periode_invoice));
+        $this->data['data'] = $data;
+
         return view($this->view.'.form', $this->data);
     }
 
@@ -61,9 +68,7 @@ class InvoiceController extends Controller
         try {   
             DB::beginTransaction();
             if(isset($req->id)) {
-                $model = Invoice::where('id', $req->id)->first();
-            } else {
-                
+                $model = Invoice::find($req->id);
             }
 
             $peirode_invoice         = array_map(function($x) {

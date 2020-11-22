@@ -17,7 +17,7 @@ class CreateInvoicesTable extends Migration
             
 			$table->id();
 			$table->string('no_invoice')->unique();
-			$table->bigInteger('contract_id');
+			$table->unsignedBigInteger('contract_id');
 
 			$table->date('date_invoice');
 			$table->string('periode_invoice')->nullable();

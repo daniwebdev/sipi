@@ -31,6 +31,8 @@ class CreatePurchasesTable extends Migration
 
             $table->timestamps();
         });
+
+ 
     }
 
     /**
