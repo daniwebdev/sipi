@@ -38,22 +38,26 @@ class HomeController extends Controller
         ];
 
         $this->data['total_contract']        = Contract::sum('total_contract_value'); 
-        $this->data['total_contract_unpaid'] = Invoice::where('status', 'UNPAID')->sum('total_invoice'); 
+        $this->data['total_contract_unpaid'] = Invoice::where('status', 'UNPAID')->sum('total_sisa');
         $this->data['total_contract_paid']   = Invoice::where('status', 'PAID')->sum('total_invoice');; 
+        $this->data['total_contract_kredit']   = Invoice::where('status', 'KREDIT')->sum('total_bayar');; 
 
         $months = range(1,12);
         $paid_invs = [];
         $unpaid_invs = [];
+        $kredit_invs = [];
 
         foreach($months as $value) {
             $bln = date('Y', time()+60*60*7).str_pad($value, 2, 0, STR_PAD_LEFT);
 
             $paid_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'PAID')->sum('total_invoice');
-            $unpaid_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'UNPAID')->sum('total_invoice');
+            $unpaid_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'UNPAID')->sum('total_sisa');
+            $kredit_invs[] = Invoice::where(DB::raw('DATE_FORMAT(date_invoice, "%Y%m")'), $bln)->where('status', 'KREDIT')->sum('total_bayar');
         }
 
         $this->data['total_invoice_paid'] = json_encode($paid_invs);
         $this->data['total_invoice_unpaid'] = json_encode($unpaid_invs);
+        $this->data['total_invoice_kredit'] = json_encode($kredit_invs);
 
         return view($this->template.'.dashboard.main', $this->data);
     }

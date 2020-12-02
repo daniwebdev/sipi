@@ -79,9 +79,14 @@ class InvoiceController extends Controller
 			$model->date_invoice        = implode('-', array_reverse(explode('/', $req->date_invoice)));
 			$model->contract_id         = $req->contract_id;
 			$model->no_invoice          = $req->no_invoice;
+			$model->keterangan         = $req->keterangan;
             $model->total_invoice       = getInt($req->total_invoice);
+			$model->total_bayar         = getInt($req->total_bayar);
+			$model->total_sisa          = getInt($req->total_sisa);
+            
             $model->periode_invoice     = implode(' s/d ', $peirode_invoice);
-			$model->status              = $req->status;
+            $model->status              = $req->status;
+            
             $model->save();
 
             if($req->status == 'PAID') {

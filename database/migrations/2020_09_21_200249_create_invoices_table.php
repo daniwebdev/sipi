@@ -23,6 +23,9 @@ class CreateInvoicesTable extends Migration
 			$table->string('periode_invoice')->nullable();
 
 			$table->integer('total_invoice')->nullable();
+			$table->integer('total_bayar')->default(0);
+			$table->integer('total_sisa')->default(0);
+			$table->text('keterangan');
 			$table->string('status');
 
 			$table->timestamps();

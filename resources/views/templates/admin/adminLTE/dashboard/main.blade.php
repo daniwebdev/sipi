@@ -4,7 +4,7 @@
 @endpush
 @section('content')
       <div class="row">
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <a href="{{route('contract.index')}}" class="info-box-icon bg-primary"><i class="fas fa-boxes    "></i></a>
 
@@ -16,7 +16,7 @@
           </div>
           <!-- /.info-box -->
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
 
             <a href="{{route('invoice.index')}}?status=UNPAID" class="info-box-icon bg-danger"><i class="fas fa-money-bill    "></i></a>
@@ -29,7 +29,8 @@
           </div>
           <!-- /.info-box -->
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+        
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <a href="{{route('invoice.index')}}?status=PAID" class="info-box-icon bg-success"><i class="fas fa-money-check-alt    "></i></a>
 
@@ -41,6 +42,20 @@
           </div>
           <!-- /.info-box -->
         </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <a href="{{route('invoice.index')}}?status=KREDIT" class="info-box-icon bg-warning"><i class="fas text-light fa-money-check-alt"></i></a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Kredit Paid</span>
+              <span class="info-box-number">{{number_format($total_contract_kredit)}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
       </div>
 
       {{-- Chart --}}
@@ -64,9 +79,14 @@
                   <i class="fas fa-square text-success"></i> Paid
                 </span>
 
-                <span>
+                <span class="mr-2">
                   <i class="fas fa-square text-danger"></i> Unpaid
                 </span>
+                
+                <span>
+                  <i class="fas fa-square text-warning"></i> Kredit
+                </span>
+
               </div>
             </div>
           </div>
@@ -102,6 +122,11 @@
           backgroundColor: '#DC3D45',
           borderColor    : '#DC3D45',
           data           : {!! $total_invoice_unpaid !!}
+        },
+        {
+          backgroundColor: '#FEBF3B',
+          borderColor    : '#FEBF3B',
+          data           : {!! $total_invoice_kredit !!}
         }
       ]
     },

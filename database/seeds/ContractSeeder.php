@@ -15,7 +15,11 @@ class ContractSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i <= 5 ; $i++) { 
+        $array = [20000000,30000000,43000000,23000000];
+
+        for ($i=1; $i <= 30 ; $i++) {
+            $total = $array[rand(0,3)];
+
             $contract = Contract::create([
                 "no_contract"          => "233$i/HK8090/PIN.00.00/2015",
                 "customer"             => "PT PERUSAHAAN $i",
@@ -25,19 +29,52 @@ class ContractSeeder extends Seeder
                 "type_contract"        => "MRC/OTC",
                 "start_contract"       => "2020-02-01",
                 "end_contract"         => "2020-05-02",
-                "total_contract_value" => "20000000",
-                "balance"              => "20000000",
+                "total_contract_value" => $total,
+                "balance"              => $total,
                 "status_contract"      => 1,
             ]);
+            
+            $date = rand(1,12);
 
-            Invoice::create([
-                "contract_id"     =>  $contract->id,
-                "no_invoice"      =>  '2019/MMT/050'.$i,
-                "date_invoice"    =>  '2020-03-03',
-                "periode_invoice" =>  '2020-03-03 s/d 2020-02-03',
-                "total_invoice"   =>  1000000,
-                "status"          =>  'UNPAID',
-            ]);
+            $total_inv = $total/12;
+
+            $rand = ['PAID', 'UNPAID', 'KREDIT'];
+            $status = $rand[rand(0,2)];
+
+            if($status == 'KREDIT') {
+                Invoice::create([
+                    "contract_id"     =>  $contract->id,
+                    "no_invoice"      =>  '2019/MMT/050'.$i,
+                    "date_invoice"    =>  '2020-'.$date.'-03',
+                    "periode_invoice" =>  '2020-'.$date.'-03 s/d 2020-'.($date < 11 ? $date+1:$date).'-03',
+                    "total_invoice"   =>  $total_inv,
+                    "total_bayar"     =>  $total_inv/2,
+                    "total_sisa"      =>  $total_inv/2,
+                    "status"          =>  $status,
+                ]);
+            } else if($status == 'UNPAID') {
+                Invoice::create([
+                    "contract_id"     =>  $contract->id,
+                    "no_invoice"      =>  '2019/MMT/050'.$i,
+                    "date_invoice"    =>  '2020-'.$date.'-03',
+                    "periode_invoice" =>  '2020-'.$date.'-03 s/d 2020-'.($date < 11 ? $date+1:$date).'-03',
+                    "total_invoice"   =>  $total_inv,
+                    "total_bayar"     =>  0,
+                    "total_sisa"      =>  $total_inv,
+                    "status"          =>  $status,
+                ]);
+            } else {
+                Invoice::create([
+                    "contract_id"     =>  $contract->id,
+                    "no_invoice"      =>  '2019/MMT/050'.$i,
+                    "date_invoice"    =>  '2020-'.$date.'-03',
+                    "periode_invoice" =>  '2020-'.$date.'-03 s/d 2020-'.($date < 11 ? $date+1:$date).'-03',
+                    "total_invoice"   =>  $total_inv,
+                    "total_bayar"     =>  $total_inv,
+                    "total_sisa"      =>  0,
+                    "status"          =>  $status,
+                ]);
+            }
         }
     }
 }
