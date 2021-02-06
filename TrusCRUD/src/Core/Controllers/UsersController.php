@@ -74,6 +74,10 @@ class UsersController extends Controller
 
     public function store(Request $req, UsersModel $model) {
 
+        $req->validate([
+            'name' => 'required'
+        ]);
+        
         try {
             $user = Auth::user();
             $post = $req->all();

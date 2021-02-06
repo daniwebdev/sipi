@@ -32,12 +32,18 @@ Form Invoice
                     <option {{(isset($data) && $data->contract_id == $Contract->id ? 'selected':'')}} data-json='{!! $Contract !!}' value="{{$Contract->id}}" data-subtext="{{$Contract->customer}} | {{$Contract->end_customer}}">{{$Contract->no_contract}}</option>
                 @endforeach
               </select>
+              @error('contract_id')
+                  <span class="text-danger">{{$message}}</span>
+              @enderror
             </div>
 
             <!-- No Invoice -->
             <div class="form-group col-md-6">
               <label for="no_invoice">No Invoice <span class="text-danger">*</span></label>
               <input autocomplete="off" name="no_invoice" type="text" class="form-control" id="no_invoice" placeholder="" value="{{isset($data) ? $data->no_invoice:''}}">
+              @error('no_invoice')
+                <span class="text-danger">{{$message}}</span>
+              @enderror
             </div>
 
             <!-- Date Invoice -->
@@ -90,7 +96,7 @@ Form Invoice
             <!-- Keterangan -->
             <div class="form-group col-md-12">
               <label for="status">Keterangan</label>
-              <textarea name="keterangan" id="keterangan"  rows="4" class="form-control"></textarea>
+              <textarea name="keterangan" id="keterangan"  rows="4" class="form-control">{{$item->keterangan ?? ''}}</textarea>
             </div>
             
           </div>

@@ -35,7 +35,7 @@ class InvoiceController extends Controller
 
             $serach = strtolower($req->get('search'));
 
-            $model = $model->where(DB::raw('LOWER(no_invoice)'), "LIKE", "%$serach%");
+            $model = $model->where(DB::raw('(CONCAT(LOWER(no_invoice), CONCAT(\'status:\',status)))'), "LIKE", "%$serach%");
         }
         
         if($req->get('status') != '') {
@@ -64,6 +64,13 @@ class InvoiceController extends Controller
     }
 
     public function store(Invoice $model, Request $req) {
+
+        $req->validate([
+            'date_invoice' => 'required',
+            'contract_id' => 'required',
+            'no_invoice' => 'required',
+        ]);
+        
 
         try {   
             DB::beginTransaction();

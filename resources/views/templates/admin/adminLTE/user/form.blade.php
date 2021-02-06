@@ -25,6 +25,9 @@
             <div class="form-group col-md-6">
               <label for="name">@lang('user.text_fullname')</label>
               <input autocomplete="off" name="name" type="name" class="form-control" id="name" placeholder="" value="{{isset($data) ? $data->name:''}}">
+              @error('name')
+                  <span class="text-danger">{{$message}}</span>
+              @enderror
             </div>
 
             <div class="form-group col-md-6">

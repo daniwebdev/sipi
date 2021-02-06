@@ -77,11 +77,10 @@ Form Contract
               <label for="status_contract">Status<span class="text-danger">*</span></label>
               <select name="status_contract" id="status_contract" class="form-control">
                 <option value="">- Pilih -</option>
-                <option {{$data && $data->status_contract == '1' ? 'selected':''}} value="1">Aktif</option>
-                <option {{$data && $data->status_contract == '0' ? 'selected':''}} value="0">Habis</option>
+                <option {{isset($data) && $data->status_contract == '1' ? 'selected':''}} value="1">Aktif</option>
+                <option {{isset($data) && $data->status_contract == '0' ? 'selected':''}} value="0">Habis</option>
               </select>
             </div>
-            
 
           </div>
 
@@ -102,9 +101,11 @@ Form Contract
 @endsection
 
 @push('scripts')
+
 <script src="/theme/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script src="/theme/plugins/jquery-ui/jquery-ui.min.js"></script>
+
 <script>
   $('[year]').inputmask({
     mask: '####'
