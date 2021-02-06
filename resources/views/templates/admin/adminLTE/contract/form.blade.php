@@ -51,25 +51,25 @@ Form Contract
             <!-- Year -->
             <div class="form-group col-md-6">
               <label for="project_year">Tahun Proyek <span class="text-danger">*</span></label>
-              <input year autocomplete="off" name="project_year" type="text" class="form-control" id="project_year" placeholder="" value="{{isset($data) ? $data->end_customer:''}}">
+              <input year autocomplete="off" name="project_year" type="text" class="form-control" id="project_year" placeholder="" value="{{isset($data) ? $data->project_year:''}}">
             </div>
             
             <!-- Total Contract Value -->
             <div class="form-group col-md-6">
               <label for="total_contract_value">Total Contract Value <span class="text-danger">*</span></label>
-              <input autocomplete="off" name="total_contract_value" type="text" class="form-control" id="total_contract_value" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+              <input autocomplete="off" name="total_contract_value" type="text" class="form-control" id="total_contract_value" placeholder="" value="{{isset($data) ? $data->total_contract_value:''}}">
             </div>
             
             <!-- Total Contract Value -->
             <div class="form-group col-md-6">
               <label for="start_contract">Start Contract <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="start_contract" type="text" class="form-control" id="start_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+              <input tgl autocomplete="off" name="start_contract" type="text" class="form-control" id="start_contract" placeholder="" value="{{isset($data) ? date('d-m-Y', strtotime($data->start_contract)):''}}">
             </div>
             
             <!-- Total Contract Value -->
             <div class="form-group col-md-6">
               <label for="end_contract">End Contract <span class="text-danger">*</span></label>
-              <input tgl autocomplete="off" name="end_contract" type="text" class="form-control" id="end_contract" placeholder="" value="{{isset($data) ? $data->total_contract:''}}">
+              <input tgl autocomplete="off" name="end_contract" type="text" class="form-control" id="end_contract" placeholder="" value="{{isset($data) ? date('d-m-Y', strtotime($data->end_contract)):''}}">
             </div>
             
             <!-- Status -->
@@ -77,8 +77,8 @@ Form Contract
               <label for="status_contract">Status<span class="text-danger">*</span></label>
               <select name="status_contract" id="status_contract" class="form-control">
                 <option value="">- Pilih -</option>
-                <option value="1">Aktif</option>
-                <option value="0">Habis</option>
+                <option {{$data && $data->status_contract == '1' ? 'selected':''}} value="1">Aktif</option>
+                <option {{$data && $data->status_contract == '0' ? 'selected':''}} value="0">Habis</option>
               </select>
             </div>
             

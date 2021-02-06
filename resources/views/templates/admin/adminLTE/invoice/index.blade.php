@@ -88,7 +88,7 @@ Invoice
                         @if($item->deleted_at)
                         <button class="btn btn-success btn-xs text-white restore" data-id="{{$item->id}}"><i class="fas fa-sync-alt"></i> Restore</button>
                         @else
-                          @if (Role::isAllow("delete"))
+                          @if (Role::isAllow("destroy"))
                           <button class="btn btn-danger btn-xs text-white delete" data-id="{{$item->id}}"><i class="fas fa-trash"></i> Delete</button>
                           @endif
                         @endif

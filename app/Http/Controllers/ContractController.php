@@ -51,7 +51,8 @@ class ContractController extends Controller
     }
 
     public function edit(Contract $model, $id) {
-        $this->data['data'] = $model->find($id)->first();
+        $this->data['data'] = $model->find($id);
+        // dd($this->data['data']->toArray());
         return view($this->view.'.form', $this->data);
     }
 

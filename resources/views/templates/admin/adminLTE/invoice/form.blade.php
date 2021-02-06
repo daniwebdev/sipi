@@ -26,7 +26,7 @@ Form Invoice
             <!-- Contract Id -->
             <div class="form-group col-md-6">
               <label for="contract_id">Contract <span class="text-danger">*</span></label>
-              <select name="contract_id" id="contract_id" selectpicker class="form-control">
+              <select data-size="5" data-live-search='true' name="contract_id" id="contract_id" selectpicker class="form-control">
                 <option value="">- Chosee -</option>
                 @foreach (\App\Models\Contract::get() as $Contract)
                     <option {{(isset($data) && $data->contract_id == $Contract->id ? 'selected':'')}} data-json='{!! $Contract !!}' value="{{$Contract->id}}" data-subtext="{{$Contract->customer}} | {{$Contract->end_customer}}">{{$Contract->no_contract}}</option>

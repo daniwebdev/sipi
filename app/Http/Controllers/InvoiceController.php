@@ -98,6 +98,7 @@ class InvoiceController extends Controller
             $message = "Save Successfully";
             DB::commit();
         } catch (\Exception $er) {
+            dd($er);
             DB::rollBack();
             $status  = 'error';
             $message = $er->getMessage();
